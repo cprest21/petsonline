@@ -1,0 +1,33 @@
+<%- model_class = Loss -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:lost) %>:</strong></dt>
+  <dd><%= @loss.lost %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:finder_name) %>:</strong></dt>
+  <dd><%= @loss.finder_name %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:finder_contact_details) %>:</strong></dt>
+  <dd><%= @loss.finder_contact_details %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:date_lost) %>:</strong></dt>
+  <dd><%= @loss.date_lost %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:place_lost) %>:</strong></dt>
+  <dd><%= @loss.place_lost %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:date_found) %>:</strong></dt>
+  <dd><%= @loss.date_found %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:place_found) %>:</strong></dt>
+  <dd><%= @loss.place_found %></dd>
+</dl>
+
+<div class="form-actions">
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              losses_path, :class => 'btn'  %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_loss_path(@loss), :class => 'btn' %>
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              loss_path(@loss),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>
+</div>

@@ -1,0 +1,10 @@
+<%= simple_form_for @pet_treatment, :html => { :class => 'form-horizontal' } do |f| %>
+  <%= f.input :medical_history_no %>
+  <%= f.input :pet_id %>
+  <%= f.input :treatment_id %>
+  <div class="form-actions">
+    <%= f.button :submit, :class => 'btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                pet_treatments_path, :class => 'btn' %>
+  </div>
+<% end %>

@@ -1,0 +1,6 @@
+<div class="control-group string optional">
+	<label class="string optional control-label" for="countries">Country</label>
+	<div class="controls">
+		<span id="countries"><%= collection_select('country', 'id', Country.all, :id, :name, {:include_blank => "", :selected => (@country_id || 0) }) %></span>
+	</div>
+</div>

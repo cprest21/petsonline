@@ -1,0 +1,14 @@
+<%= simple_form_for @loss, :html => { :class => 'form-horizontal' } do |f| %>
+  <%= f.input :lost %>
+  <%= f.input :finder_name %>
+  <%= f.input :finder_contact_details %>
+  <%= f.input :date_lost %>
+  <%= f.input :place_lost %>
+  <%= f.input :date_found %>
+  <%= f.input :place_found %>
+  <div class="form-actions">
+    <%= f.button :submit, :class => 'btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                losses_path, :class => 'btn' %>
+  </div>
+<% end %>

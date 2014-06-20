@@ -1,0 +1,8 @@
+<div class="control-group string optional">
+	<label class="string optional control-label" for="provinces">Province</label>
+	<div class="controls">
+		<%#= @provinces.select {|x| x.country_id== }%>
+		<%= collection_select('city', 'province_id', (@provinces || []), :id, :name, {:include_blank => "", :selected => (@province_id || 0)}) %>
+		<span id="loading_provinces" style='display:none;'><%= t 'g.loading' %>...</span>
+	</div>
+</div>

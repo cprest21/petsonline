@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  loss_history_no: 1
+  pet_id: 
+  loss_id: 
+
+two:
+  loss_history_no: 1
+  pet_id: 
+  loss_id: 

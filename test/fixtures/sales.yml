@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  pet_id: 
+  price: 1.5
+  sold: false
+  date_sold: 2014-06-08 13:00:46
+  details: MyText
+
+two:
+  pet_id: 
+  price: 1.5
+  sold: false
+  date_sold: 2014-06-08 13:00:46
+  details: MyText

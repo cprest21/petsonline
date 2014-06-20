@@ -1,0 +1,25 @@
+<%- model_class = PetsLoss -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:loss_history_no) %>:</strong></dt>
+  <dd><%= @pets_loss.loss_history_no %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:pet_id) %>:</strong></dt>
+  <dd><%= @pets_loss.pet_id %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:loss_id) %>:</strong></dt>
+  <dd><%= @pets_loss.loss_id %></dd>
+</dl>
+
+<div class="form-actions">
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              pets_losses_path, :class => 'btn'  %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_pets_loss_path(@pets_loss), :class => 'btn' %>
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              pets_loss_path(@pets_loss),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>
+</div>

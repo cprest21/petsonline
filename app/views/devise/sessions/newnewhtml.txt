@@ -1,0 +1,83 @@
+<h2>Sign in</h2>
+
+<%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  <div class="form-inputs">
+    <%= f.input :email, required: false, autofocus: true %>
+    <%= f.input :password, required: false %>
+    <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+  </div>
+  <div class="form-actions">
+    <%= f.button :submit, "Sign in" %>
+  </div>
+<% end %>
+
+<%= render "devise/shared/links" %>
+
+
+
+		<table border=0 width=100%>
+			<tr>
+				<td align="left">
+					<p>
+						<font face="verdana" size="5" color="maroon">
+							<b>PetsOnline</b>
+						</font>
+					</p>
+				</td>
+				<td align="right">
+					<p>
+						<font face="verdana" size="1" color="blue">
+							|&nbsp;<u>Login</u>&nbsp;|&nbsp;<u>Sign up as Pet Owner</u>&nbsp;|&nbsp;<u>Sign up as Advertiser</u>&nbsp;|
+						</font>
+					</p>
+				</td>
+			</tr>
+			<tr height="300" valign="bottom">
+				<td colspan="2" align="center">
+					<table width=19% border=0>
+						<tr>
+							<td align="left">
+								<font face="verdana" color="maroon">
+									<h2>Login</h2>
+								</font>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr height="300" valign="top">
+				<td colspan="2" align="center">
+					<%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+					<font face ="verdana">
+					<table width=19% border=0>
+						<tr>
+							<td align="left">
+								<%= f.input :email, required: false, autofocus: true %>
+							</td>
+						</tr>
+						<tr>
+							<td align="left">
+								<%= f.input :password, required: false %>
+							</td>
+						</tr>
+						<tr>
+							<td align="left">
+								<%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+							</td>
+						</tr>
+						<tr>
+							<td align="left">
+								<%= f.button :submit, "Sign in" %>
+							</td>
+						</tr>
+						<tr>
+							<td align="left">
+								<%= render "devise/shared/links" %>
+							</td>
+						</tr>
+					</table>
+					</font>
+					<% end %>
+				</td>
+			</tr>
+		</table>

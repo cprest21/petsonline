@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  medical_history_no: 1
+  pet_id: 
+  treatment_id: 
+
+two:
+  medical_history_no: 1
+  pet_id: 
+  treatment_id: 

@@ -1,0 +1,2 @@
+module PetsLossesHelper
+end

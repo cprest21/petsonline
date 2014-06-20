@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Petsonline</title>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<div align="right"><%= link_to "Logout", destroy_user_session_path, method: :delete %></div>
+<div class="container">
+	<div class="row">
+		<div class="span12">
+			<%= yield %>
+		</div>
+		<br><br>
+		<div class="form-actions">
+  	<%= link_to 'Add Address', new_address_path unless Owner.where(:user_id => current_user.id).blank? %>
+  	<br>
+  	<%= link_to 'Update Owner Details', new_owner_path %>
+
+  </div>
+	</div>
+</div>
+<%# if :action != 'home#index' %>
+<%if !current_page?(controller: '/home', action: 'index') %>
+<div class="navbar navbar-fixed-bottom">
+	<div class="navbar-inner">
+			<div class="container">
+				<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</a>
+				<div class="brand">PetsOnline</div><!-- <a class="brand"></a> -->
+				<div class="nav-collapse">
+					<ul class="nav">
+						<li><%= link_to "Browse Pets", pets_path %></li>
+						<li><%= link_to "Browse Users", users_path %></li>
+					</ul>
+				</div>
+			</div>
+	</div>
+</div>
+<% end %>
+</body>
+</html>

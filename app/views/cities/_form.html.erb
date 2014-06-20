@@ -1,0 +1,12 @@
+<%= simple_form_for @city do |f| %> <!--, :html => { :class => 'form-horizontal' }-->
+   <%= render :partial => "shared/errors", :locals => {:model => @city } %>
+  <span id="countries"><%= render :partial => 'shared/countries'%></span>
+  <span id="provinces"><%= render :partial => 'shared/provinces'%></span>
+  <%= f.input :name %>
+  <%#= f.input :province_id %>
+  <div class="form-actions">
+    <%= f.button :submit, :class => 'btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                cities_path, :class => 'btn' %>
+  </div>
+<% end %>

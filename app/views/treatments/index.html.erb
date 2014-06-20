@@ -1,0 +1,38 @@
+<%- model_class = Treatment -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:veterinarian_id) %></th>
+      <th><%= model_class.human_attribute_name(:treatment_date) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @treatments.each do |treatment| %>
+      <tr>
+        <td><%= link_to treatment.id, treatment_path(treatment) %></td>
+        <td><%= treatment.veterinarian_id %></td>
+        <td><%= treatment.treatment_date %></td>
+        <td><%=l treatment.created_at %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_treatment_path(treatment), :class => 'btn btn-mini' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      treatment_path(treatment),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-mini btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_treatment_path,
+            :class => 'btn btn-primary' %>

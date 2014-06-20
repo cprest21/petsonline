@@ -1,0 +1,20 @@
+<%= simple_form_for @address do |f| %> <!--, :html => { :class => 'form-horizontal' }-->
+  <%#= f.input :city_id %>
+  <%= render :partial => "shared/errors", :locals => {:model => @address } %>
+  <span id="countries"><%= render :partial => 'shared/countries'%></span>
+  <span id="provinces"><%= render :partial => 'shared/provinces'%></span>
+  <span id="cities"><%= render :partial => 'shared/cities'%></span>
+
+  <%= f.input :street %>
+  <%= f.input :street_no %>
+  <%= f.input :apartment_no %>
+  <%= f.input :floor %>
+  <%= f.input :telephone %>
+  <%= f.input :office_no %>
+  <%= f.input :building %>
+  <div class="form-actions">
+    <%= f.button :submit, :class => 'btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                addresses_path, :class => 'btn' %>
+  </div>
+<% end %>

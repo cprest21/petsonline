@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  lost: false
+  finder_name: MyString
+  finder_contact_details: MyText
+  date_lost: 2014-06-08 13:02:52
+  place_lost: MyString
+  date_found: 2014-06-08 13:02:52
+  place_found: MyString
+
+two:
+  lost: false
+  finder_name: MyString
+  finder_contact_details: MyText
+  date_lost: 2014-06-08 13:02:52
+  place_lost: MyString
+  date_found: 2014-06-08 13:02:52
+  place_found: MyString

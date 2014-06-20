@@ -1,0 +1,7 @@
+<div class="control-group select">
+	<label class="select control-label" for="city_id">City</label>
+	<div class="controls">
+		<%= collection_select(@model_name, 'city_id', (@cities || []), :id, :name, {:include_blank => "", :selected => (@city_id || 0)}, :id => "city_id") %>
+    	<span id="loading_cities" style='display:none;'><%= t 'g.loading' %>...<%= image_tag 'loading.gif' %></span>
+	</div>
+</div>
