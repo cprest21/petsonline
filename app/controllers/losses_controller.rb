@@ -31,6 +31,7 @@ class LossesController < ApplicationController
 
   # GET /losses/1/edit
   def edit
+    @loss = Loss.find(params[:id])
     render :layout => 'pets'
   end
 
