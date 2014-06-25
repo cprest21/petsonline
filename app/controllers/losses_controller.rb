@@ -13,8 +13,13 @@ class LossesController < ApplicationController
   # GET /losses/1.json
   def show
     #@loss.reload
-    @loss = Loss.where(:id => params[:id])
-    @loss.pets = Pet.where(:id => params[:pet_id])
+    #Esto devuelve un array de losses, por más que solo tenga un elemento el array
+    # @loss = Loss.where(:id => params[:id])
+
+    # Devuelve un solo elemento
+    @loss = Loss.find(params[:id])
+    # ¿Por qué asignar esto acá? Ya esta en la base de datos!
+    #@loss.pets = Pet.where(:id => params[:pet_id])
     render :layout => 'pets'
   end
 
