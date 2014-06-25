@@ -16,7 +16,8 @@
       <th><%= model_class.human_attribute_name(:deceased) %></th>
       <th><%= model_class.human_attribute_name(:death_date) %></th>
       <th><%= model_class.human_attribute_name(:type_id) %></th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%= model_class.human_attribute_name(:breed_id) %></th>
+      <!--<th><%#= model_class.human_attribute_name(:created_at) %></th>-->
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
@@ -25,17 +26,20 @@
       <tr>
         <td><%= link_to pet.id, pet_path(pet) %></td>
         <td><%= pet.name %></td>
-        <td><%= pet.owner_id %></td>
+        <td><%= pet.owner.name %>&nbsp;<%= pet.owner.lastname %><%#= pet.owner_id %></td>
         <td><%= pet.birth_date %></td>
         <td><%= pet.colour %></td>
-        <td><%= pet.sex %></td>
-        <td><%= pet.sterilized %></td>
-        <td><%= pet.available_to_breed %></td>
-        <td><%= pet.deceased %></td>
+        <td><% if pet.sex? %><%= "Male" %><% else %><%= "Female" %><% end %></td>
+        <td><% if pet.sterilized? %><%= "Yes" %><% else %><%= "No" %><% end %></td>
+        <td><% if pet.available_to_breed? %><%= "Yes" %><% else %><%= "No" %><% end %></td>
+        <td><% if pet.deceased? %><%= "Yes" %><% else %><%= "No" %><% end %></td>
         <td><%= pet.death_date %></td>
-        <td><%= pet.type_id %></td>
-        <td><%=l pet.created_at %></td>
+        <td><%= pet.type.name unless pet.type.nil? %></td>
+        <td><%= pet.breed.name unless pet.breed.nil? %></td>
+        <!--<td><%#=l pet.created_at %></td>-->
         <td>
+          <%= link_to t('.show', :default => t("helpers.links.show")),
+                      pet_path(pet), :class => 'btn btn-mini' %>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_pet_path(pet), :class => 'btn btn-mini' %>
           <%= link_to t('.destroy', :default => t("helpers.links.destroy")),

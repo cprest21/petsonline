@@ -5,7 +5,10 @@ class PetsLossesController < ApplicationController
   # GET /pets_losses
   # GET /pets_losses.json
   def index
+    @owner = Owner.where(:user_id => current_user.id).first
+    @owner = Owner.new if @owner.nil?
     @pets_losses = PetsLoss.all
+    render :layout => 'petslosses'
   end
 
   # GET /pets_losses/1
@@ -16,6 +19,7 @@ class PetsLossesController < ApplicationController
   # GET /pets_losses/new
   def new
     @pets_loss = PetsLoss.new
+    render :layout => 'petslosses'
   end
 
   # GET /pets_losses/1/edit
@@ -70,6 +74,6 @@ class PetsLossesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def pets_loss_params
-      params.require(:pets_loss).permit(:loss_history_no, :pet_id, :loss_id)
+      params.require(:pets_loss).permit(:id, :loss_history_no, :pet_id, :loss_id)
     end
 end

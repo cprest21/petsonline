@@ -7,25 +7,26 @@
   <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
   <dd><%= @pet.name %></dd>
   <dt><strong><%= model_class.human_attribute_name(:owner_id) %>:</strong></dt>
-  <dd><%= @pet.owner_id %></dd>
+  <dd><%= @pet.owner.name %>&nbsp;<%= @pet.owner.lastname %></dd>
   <dt><strong><%= model_class.human_attribute_name(:birth_date) %>:</strong></dt>
   <dd><%= @pet.birth_date %></dd>
   <dt><strong><%= model_class.human_attribute_name(:colour) %>:</strong></dt>
   <dd><%= @pet.colour %></dd>
   <dt><strong><%= model_class.human_attribute_name(:sex) %>:</strong></dt>
-  <dd><%= @pet.sex %></dd>
+  <dd><% if @pet.sex? %><%= "Male" %><% else %><%= "Female" %><% end %><%#= @pet.sex %></dd>
   <dt><strong><%= model_class.human_attribute_name(:sterilized) %>:</strong></dt>
-  <dd><%= @pet.sterilized %></dd>
+  <dd><% if @pet.sterilized? %><%= "Yes" %><% else %><%= "No" %><% end %></td></dd>
   <dt><strong><%= model_class.human_attribute_name(:available_to_breed) %>:</strong></dt>
-  <dd><%= @pet.available_to_breed %></dd>
+  <dd><% if @pet.available_to_breed? %><%= "Yes" %><% else %><%= "No" %><% end %></dd>
   <dt><strong><%= model_class.human_attribute_name(:deceased) %>:</strong></dt>
-  <dd><%= @pet.deceased %></dd>
+  <dd><% if @pet.deceased? %><%= "Yes" %><% else %><%= "No" %><% end %></dd>
   <dt><strong><%= model_class.human_attribute_name(:death_date) %>:</strong></dt>
-  <dd><%= @pet.death_date %></dd>
+  <dd><% if @pet.death_date.nil? %><%= "-" %><br><% else %><%= @pet.death_date %><% end %></dd>
   <dt><strong><%= model_class.human_attribute_name(:type_id) %>:</strong></dt>
-  <dd><%= @pet.type_id %></dd>
+  <dd><%= @pet.type.name %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:breed_id) %>:</strong></dt>
+  <dd><%= @pet.breed.name %></dd>
 </dl>
-
 <div class="form-actions">
   <%= link_to t('.back', :default => t("helpers.links.back")),
               pets_path, :class => 'btn'  %>

@@ -6,26 +6,34 @@ class LossesController < ApplicationController
   # GET /losses.json
   def index
     @losses = Loss.all
+    render :layout => 'pets'
   end
 
   # GET /losses/1
   # GET /losses/1.json
   def show
+    #@loss.reload
+    @loss = Loss.where(:id => params[:id])
+    @loss.pets = Pet.where(:id => params[:pet_id])
+    render :layout => 'pets'
   end
 
   # GET /losses/new
   def new
     @loss = Loss.new
+    render :layout => 'pets'
   end
 
   # GET /losses/1/edit
   def edit
+    render :layout => 'pets'
   end
 
   # POST /losses
   # POST /losses.json
   def create
     @loss = Loss.new(loss_params)
+    @loss.pets = Pet.where(:id => params[:pet_id])
 
     respond_to do |format|
       if @loss.save
@@ -41,6 +49,7 @@ class LossesController < ApplicationController
   # PATCH/PUT /losses/1
   # PATCH/PUT /losses/1.json
   def update
+    @loss.pets = Pet.where(:id => params[:pet_id])
     respond_to do |format|
       if @loss.update(loss_params)
         format.html { redirect_to @loss, notice: 'Loss was successfully updated.' }
@@ -70,6 +79,6 @@ class LossesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def loss_params
-      params.require(:loss).permit(:lost, :finder_name, :finder_contact_details, :date_lost, :place_lost, :date_found, :place_found)
+      params.require(:loss).permit(:id, :lost, :finder_name, :finder_contact_details, :date_lost, :place_lost, :date_found, :place_found, :pet_id)
     end
 end

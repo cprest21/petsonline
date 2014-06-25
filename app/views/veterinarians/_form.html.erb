@@ -1,7 +1,18 @@
-<%= simple_form_for @veterinarian, :html => { :class => 'form-horizontal' } do |f| %>
-  <%= f.input :address_id %>
+<%= simple_form_for @veterinarian do |f| %> <!--, :html => { :class => 'form-horizontal' }-->
+  <%= render :partial => "shared/errors", :locals => {:model => @veterinarian } %>
+  <%#= f.input :address_id %>
   <%= f.input :name %>
   <%= f.input :lastname %>
+  <span id="countries"><%= render :partial => 'shared/countries'%></span>
+  <span id="provinces"><%= render :partial => 'shared/provinces'%></span>
+  <span id="cities"><%= render :partial => 'shared/cities'%></span>
+  <%= f.input :street %>
+  <%= f.input :street_no %>
+  <%= f.input :building %>
+  <%= f.input :floor %>
+  <%= f.input :office_no %>
+  <%= f.input :telephone %>
+
   <div class="form-actions">
     <%= f.button :submit, :class => 'btn-primary' %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),

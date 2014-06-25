@@ -22,7 +22,7 @@
     <% @addresses.each do |address| %>
       <tr>
         <td><%= link_to address.id, address_path(address) %></td>
-        <td><%= address.city_id %></td>
+        <td><%= address.city.name unless address.city.nil? %></td>
         <td><%= address.street %></td>
         <td><%= address.street_no %></td>
         <td><%= address.apartment_no %></td>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140615213159) do
+ActiveRecord::Schema.define(version: 20140624211408) do
 
   create_table "addresses", force: true do |t|
     t.integer  "city_id"
@@ -40,11 +40,11 @@ ActiveRecord::Schema.define(version: 20140615213159) do
 
   create_table "advertisers", force: true do |t|
     t.integer  "address_id"
-    t.integer  "user_id"
     t.string   "name"
     t.string   "lastname"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
   end
 
   add_index "advertisers", ["address_id"], name: "index_advertisers_on_address_id"
@@ -95,6 +95,17 @@ ActiveRecord::Schema.define(version: 20140615213159) do
     t.datetime "updated_at"
   end
 
+  create_table "losses_pets", force: true do |t|
+    t.integer  "pet_id"
+    t.integer  "loss_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "loss_history_no"
+  end
+
+  add_index "losses_pets", ["loss_id"], name: "index_losses_pets_on_loss_id"
+  add_index "losses_pets", ["pet_id"], name: "index_losses_pets_on_pet_id"
+
   create_table "operations", force: true do |t|
     t.string   "name"
     t.integer  "treatment_id"
@@ -106,26 +117,15 @@ ActiveRecord::Schema.define(version: 20140615213159) do
 
   create_table "owners", force: true do |t|
     t.integer  "address_id"
-    t.integer  "user_id"
     t.string   "name"
     t.string   "lastname"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
   end
 
   add_index "owners", ["address_id"], name: "index_owners_on_address_id"
   add_index "owners", ["user_id"], name: "index_owners_on_user_id"
-
-  create_table "pet_treatments", force: true do |t|
-    t.integer  "medical_history_no"
-    t.integer  "pet_id"
-    t.integer  "treatment_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "pet_treatments", ["pet_id"], name: "index_pet_treatments_on_pet_id"
-  add_index "pet_treatments", ["treatment_id"], name: "index_pet_treatments_on_treatment_id"
 
   create_table "pets", force: true do |t|
     t.string   "name"
@@ -147,16 +147,15 @@ ActiveRecord::Schema.define(version: 20140615213159) do
   add_index "pets", ["owner_id"], name: "index_pets_on_owner_id"
   add_index "pets", ["type_id"], name: "index_pets_on_type_id"
 
-  create_table "pets_losses", force: true do |t|
-    t.integer  "loss_history_no"
+  create_table "pets_treatments", force: true do |t|
     t.integer  "pet_id"
-    t.integer  "loss_id"
+    t.integer  "treatment_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "pets_losses", ["loss_id"], name: "index_pets_losses_on_loss_id"
-  add_index "pets_losses", ["pet_id"], name: "index_pets_losses_on_pet_id"
+  add_index "pets_treatments", ["pet_id"], name: "index_pets_treatments_on_pet_id"
+  add_index "pets_treatments", ["treatment_id"], name: "index_pets_treatments_on_treatment_id"
 
   create_table "provinces", force: true do |t|
     t.string   "name"
@@ -230,8 +229,16 @@ ActiveRecord::Schema.define(version: 20140615213159) do
     t.string   "lastname"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "city_id"
+    t.string   "street"
+    t.string   "street_no"
+    t.string   "building"
+    t.string   "floor"
+    t.string   "office_no"
+    t.string   "telephone"
   end
 
   add_index "veterinarians", ["address_id"], name: "index_veterinarians_on_address_id"
+  add_index "veterinarians", ["city_id"], name: "index_veterinarians_on_city_id"
 
 end

@@ -5,13 +5,13 @@
 
 <dl class="dl-horizontal">
   <dt><strong><%= model_class.human_attribute_name(:pet_id) %>:</strong></dt>
-  <dd><%= @sale.pet_id %></dd>
+  <dd><%= @sale.pet.name %>,&nbsp;Type:&nbsp;<%= @sale.pet.type.name %>,&nbsp;Breed:&nbsp;<%= @sale.pet.breed.name %></dd>
   <dt><strong><%= model_class.human_attribute_name(:price) %>:</strong></dt>
-  <dd><%= @sale.price %></dd>
+  <dd><% if @sale.price == 0.0 %><%= "For Adoption" %><% else %><%= @sale.price %><% end %></dd>
   <dt><strong><%= model_class.human_attribute_name(:sold) %>:</strong></dt>
-  <dd><%= @sale.sold %></dd>
+  <dd><% if @sale.sold? %><%= "Yes" %><% else %><%= "No" %><% end %></dd>
   <dt><strong><%= model_class.human_attribute_name(:date_sold) %>:</strong></dt>
-  <dd><%= @sale.date_sold %></dd>
+  <dd><%if @sale.sold? %><%= @sale.date_sold %><% else %><%= "-" %><% end %></dd>
   <dt><strong><%= model_class.human_attribute_name(:details) %>:</strong></dt>
   <dd><%= @sale.details %></dd>
 </dl>

@@ -9,7 +9,7 @@
       <th><%= model_class.human_attribute_name(:user_id) %></th>
       <th><%= model_class.human_attribute_name(:details) %></th>
       <th><%= model_class.human_attribute_name(:placement_date) %></th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%#= model_class.human_attribute_name(:created_at) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
@@ -17,10 +17,18 @@
     <% @advertisements.each do |advertisement| %>
       <tr>
         <td><%= link_to advertisement.id, advertisement_path(advertisement) %></td>
-        <td><%= advertisement.user_id %></td>
+        <% u = User.where(:id => advertisement.user_id).first %>
+        <td><% if u.role == "owner" %>
+              <% @o = Owner.where(:user_id => u.id) %>
+              <%= @o.name %>&nbsp;<%= @o.lastname %> 
+            <% elsif u.role == "advertiser" %>
+              <% @a = Advertiser.where(:user_id => u.id).first %>
+              <%= @a.name %>&nbsp;<%= @a.lastname %>
+            <% end %>
+        </td> <!--advertisement.user_id-->
         <td><%= advertisement.details %></td>
         <td><%= advertisement.placement_date %></td>
-        <td><%=l advertisement.created_at %></td>
+        <td><%#=l advertisement.created_at %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_advertisement_path(advertisement), :class => 'btn btn-mini' %>
@@ -38,3 +46,4 @@
 <%= link_to t('.new', :default => t("helpers.links.new")),
             new_advertisement_path,
             :class => 'btn btn-primary' %>
+<br><br>

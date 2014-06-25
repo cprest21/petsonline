@@ -6,6 +6,7 @@
   <thead>
     <tr>
       <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= 'Pet' %></th>
       <th><%= model_class.human_attribute_name(:lost) %></th>
       <th><%= model_class.human_attribute_name(:finder_name) %></th>
       <th><%= model_class.human_attribute_name(:finder_contact_details) %></th>
@@ -21,7 +22,8 @@
     <% @losses.each do |loss| %>
       <tr>
         <td><%= link_to loss.id, loss_path(loss) %></td>
-        <td><%= loss.lost %></td>
+        <td><%= loss.pets.first.name %></td>
+        <td><% if loss.lost? %><%= "Yes" %><% else %><%= "No" %><% end %></td>
         <td><%= loss.finder_name %></td>
         <td><%= loss.finder_contact_details %></td>
         <td><%= loss.date_lost %></td>
@@ -30,6 +32,8 @@
         <td><%= loss.place_found %></td>
         <td><%=l loss.created_at %></td>
         <td>
+          <%= link_to t('.show', :default => t("helpers.links.show")),
+                      loss_path(loss), :class => 'btn btn-mini' %>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_loss_path(loss), :class => 'btn btn-mini' %>
           <%= link_to t('.destroy', :default => t("helpers.links.destroy")),

@@ -1,0 +1,7 @@
+<div class="control-group string optional">
+	<label class="string optional control-label" for="breeds">Breed</label>
+	<div class="controls">
+		<%= collection_select(@model_name, 'breed_id', (@breeds || []), :id, :name, {:include_blank => "", :selected => (@breed_id || 0)}, :id => "breed_id") %>
+		<span id="loading_breeds" style='display:none;'><%= t 'g.loading' %>...</span>
+	</div>
+</div>

@@ -10,7 +10,7 @@ class CreatePets < ActiveRecord::Migration
       t.boolean :sterilized
       t.boolean :available_to_breed
       t.boolean :deceased
-      t.datetime :death_date
+      t.datetime :death_date, :value => nil
 
       t.timestamps
     end

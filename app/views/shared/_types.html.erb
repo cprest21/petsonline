@@ -1,0 +1,6 @@
+<div class="control-group string optional">
+	<label class="string optional control-label" for="types">Type</label>
+	<div class="controls">
+		<span id="types"><%= collection_select('type', 'id', Type.all, :id, :name, {:include_blank => "", :selected => (@type_id || 0) }) %></span>
+	</div>
+</div>

@@ -19,13 +19,15 @@
     <% @sales.each do |sale| %>
       <tr>
         <td><%= link_to sale.id, sale_path(sale) %></td>
-        <td><%= sale.pet_id %></td>
-        <td><%= sale.price %></td>
-        <td><%= sale.sold %></td>
+        <td><%= sale.pet.name %>,&nbsp;Type:&nbsp;<%= sale.pet.type.name %>,&nbsp;Breed:&nbsp;<%= sale.pet.breed.name %></td>
+        <td><% if sale.price == 0.0 %><%= "For Adoption" %><% else %><%= sale.price %><% end %></td>
+        <td><% if sale.sold? %><%= "Yes" %><% else %><%= "No" %><% end %></td>
         <td><%= sale.date_sold %></td>
         <td><%= sale.details %></td>
         <td><%=l sale.created_at %></td>
         <td>
+          <%= link_to t('.show', :default => t("helpers.links.show")),
+                      sale_path(sale), :class => 'btn btn-mini' %>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_sale_path(sale), :class => 'btn btn-mini' %>
           <%= link_to t('.destroy', :default => t("helpers.links.destroy")),

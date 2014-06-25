@@ -5,11 +5,20 @@
 
 <dl class="dl-horizontal">
   <dt><strong><%= model_class.human_attribute_name(:user_id) %>:</strong></dt>
-  <dd><%= @advertisement.user_id %></dd>
+  <dd><%= @advertisement.user_id %>
+    <%# u = User.where(:id => @advertisement.user_id).first %>
+    <%# if u.role == "owner" %>
+        <%# @o = Owner.where(:user_id => u.id) %>
+        <%#= @o.name %><!--&nbsp;--><%#= @o.lastname %> 
+    <%# elsif u.role == "advertiser" %>
+        <%# @a = Advertiser.where(:user_id => u.id).first %>
+        <%#= @a.name %><!--&nbsp;--><%#= @a.lastname %>
+    <%# end %>
+  </dd> 
   <dt><strong><%= model_class.human_attribute_name(:details) %>:</strong></dt>
   <dd><%= @advertisement.details %></dd>
   <dt><strong><%= model_class.human_attribute_name(:placement_date) %>:</strong></dt>
-  <dd><%= @advertisement.placement_date %></dd>
+  <dd><%= @advertisement.updated_at %></dd>
 </dl>
 
 <div class="form-actions">

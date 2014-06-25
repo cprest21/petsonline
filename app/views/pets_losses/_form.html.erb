@@ -1,7 +1,10 @@
-<%= simple_form_for @pets_loss, :html => { :class => 'form-horizontal' } do |f| %>
-  <%= f.input :loss_history_no %>
-  <%= f.input :pet_id %>
-  <%= f.input :loss_id %>
+<%= simple_form_for @pets_loss do |f| %> <!--, :html => { :class => 'form-horizontal' }-->
+  <%#= f.input :loss_history_no %>
+  <%#= f.input :pet_id %>
+  <!--<span id="pets"><%#= render :partial => 'shared/pets'%></span>-->
+  <% @owner = Owner.where(:user_id => current_user.id).first %>
+  <%= collection_select(:pets_loss, :pet_id, Pet.where(:owner_id => @owner.id), :id, :name, {:include_blank => "", :selected => (@pet_id || 0)}) %>
+  <%#= f.input :loss_id %>
   <div class="form-actions">
     <%= f.button :submit, :class => 'btn-primary' %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),

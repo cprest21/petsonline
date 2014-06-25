@@ -1,4 +1,6 @@
-<%= simple_form_for @treatment, :html => { :class => 'form-horizontal' } do |f| %>
+<%= simple_form_for @treatment do |f| %> <!--, :html => { :class => 'form-horizontal' }-->
+  <% @owner = Owner.where(:user_id => current_user.id).first %>
+  <%= collection_select(:pet_id, nil, Pet.where(:owner_id => @owner.id), :id, :name, {:include_blank => "", :selected => (@pet_id || 0)}) %>
   <%= f.input :veterinarian_id %>
   <%= f.input :treatment_date %>
   <div class="form-actions">

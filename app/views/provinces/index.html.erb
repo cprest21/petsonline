@@ -17,7 +17,7 @@
       <tr>
         <td><%= link_to province.id, province_path(province) %></td>
         <td><%= province.name %></td>
-        <td><%= province.country.name %></td>
+        <td><%= province.country.name unless province.country.nil? %></td>
         <td><%=l province.created_at %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),

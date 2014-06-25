@@ -6,10 +6,10 @@
   <thead>
     <tr>
       <th><%= model_class.human_attribute_name(:id) %></th>
-      <th><%= model_class.human_attribute_name(:address_id) %></th>
+      <!--<th><%#= model_class.human_attribute_name(:address_id) %></th>-->
       <th><%= model_class.human_attribute_name(:name) %></th>
       <th><%= model_class.human_attribute_name(:lastname) %></th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <!--<th><%#= model_class.human_attribute_name(:created_at) %></th>-->
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
@@ -17,11 +17,13 @@
     <% @veterinarians.each do |veterinarian| %>
       <tr>
         <td><%= link_to veterinarian.id, veterinarian_path(veterinarian) %></td>
-        <td><%= veterinarian.address_id %></td>
+        <!--<td><%#= veterinarian.address_id %></td>-->
         <td><%= veterinarian.name %></td>
         <td><%= veterinarian.lastname %></td>
-        <td><%=l veterinarian.created_at %></td>
+        <!--<td><%#=l veterinarian.created_at %></td>-->
         <td>
+          <%= link_to t('.show', :default => t("helpers.links.show")),
+                      veterinarian_path(veterinarian), :class => 'btn btn-mini' %>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_veterinarian_path(veterinarian), :class => 'btn btn-mini' %>
           <%= link_to t('.destroy', :default => t("helpers.links.destroy")),

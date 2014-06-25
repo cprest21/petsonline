@@ -7,7 +7,12 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<div align="right"><%= link_to "Logout", destroy_user_session_path, method: :delete %></div>
+	<table width=100%>
+		<tr>
+			<td align="left" class="brand"><h3>&nbsp;&nbsp;PetsOnline</h3></td>
+			<td align="right"><%= link_to "Logout", destroy_user_session_path, method: :delete %>&nbsp;&nbsp;&nbsp;</td>
+		</tr>
+	</table>
 <div class="container">
 	<div class="row">
 		<div class="span12">
@@ -15,7 +20,14 @@
 		</div>
 		<br><br>
 		<div class="form-actions">
-  	<%= link_to 'Add Address', new_address_path unless Owner.where(:user_id => current_user.id).blank? %>
+  	<% if Owner.where(:user_id => current_user.id) %>
+  	<%    if @owner.address_id.nil? %>
+  	<%=       link_to 'Add Address', new_address_path %>
+  	<%    else %>
+  	<%=       link_to 'Update Address', edit_address_path(@owner.address_id) %>
+  	<%    end %>
+  	<% end %>
+  	<%#= link_to 'Add Address', new_address_path unless Owner.where(:user_id => current_user.id).blank? %>
   	<br>
   	<%= link_to 'Update Owner Details', new_owner_path %>
 
@@ -35,8 +47,13 @@
 				<div class="brand">PetsOnline</div><!-- <a class="brand"></a> -->
 				<div class="nav-collapse">
 					<ul class="nav">
-						<li><%= link_to "Browse Pets", pets_path %></li>
-						<li><%= link_to "Browse Users", users_path %></li>
+						<li><%= link_to "Owner Details", new_owner_path %></li>
+						<li><%= link_to "Pets", pets_path %></li>
+						<li><%= link_to "Missing Pets", losses_path %></li>
+						<li><%= link_to "Advertisements", advertisements_path %></li>
+						<li><%= link_to "Medical History", treatments_path %></li>
+						<li><%= link_to "Veterinarians", veterinarians_path %></li>
+						<li><%= link_to "Sales/Adoptions", sales_path %></li>
 					</ul>
 				</div>
 			</div>

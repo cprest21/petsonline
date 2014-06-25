@@ -6,6 +6,7 @@ class AdvertisersController < ApplicationController
   # GET /advertisers.json
   def index
     @advertisers = Advertiser.all
+    render :layout => 'application'
   end
 
   # GET /advertisers/1
@@ -15,7 +16,9 @@ class AdvertisersController < ApplicationController
 
   # GET /advertisers/new
   def new
-    @advertiser = Advertiser.new
+    #@advertiser = Advertiser.new
+    @advertiser = Advertiser.where(:user_id => current_user.id).first
+    @advertiser = Advertiser.new if @advertiser.nil?
   end
 
   # GET /advertisers/1/edit
@@ -26,6 +29,7 @@ class AdvertisersController < ApplicationController
   # POST /advertisers.json
   def create
     @advertiser = Advertiser.new(advertiser_params)
+    @advertiser.user_id = current_user.id
 
     respond_to do |format|
       if @advertiser.save

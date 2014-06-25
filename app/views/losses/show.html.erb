@@ -4,6 +4,8 @@
 </div>
 
 <dl class="dl-horizontal">
+  <dt><strong><%= "Pet" %></strong></dt>
+  <dd><%= @loss.pets.first.name %></dd>
   <dt><strong><%= model_class.human_attribute_name(:lost) %>:</strong></dt>
   <dd><%= @loss.lost %></dd>
   <dt><strong><%= model_class.human_attribute_name(:finder_name) %>:</strong></dt>

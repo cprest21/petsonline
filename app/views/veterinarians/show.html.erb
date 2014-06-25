@@ -4,12 +4,22 @@
 </div>
 
 <dl class="dl-horizontal">
-  <dt><strong><%= model_class.human_attribute_name(:address_id) %>:</strong></dt>
-  <dd><%= @veterinarian.address_id %></dd>
   <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
   <dd><%= @veterinarian.name %></dd>
   <dt><strong><%= model_class.human_attribute_name(:lastname) %>:</strong></dt>
   <dd><%= @veterinarian.lastname %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:city) %>:</strong></dt>
+  <dd><%= @veterinarian.city.name %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:street) %>:</strong></dt>
+  <dd><%= @veterinarian.street %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:street_no) %>:</strong></dt>
+  <dd><%= @veterinarian.street_no %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:building) %>:</strong></dt>
+  <dd><%= @veterinarian.building %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:office_no) %>:</strong></dt>
+  <dd><%= @veterinarian.office_no %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:telephone) %>:</strong></dt>
+  <dd><%= @veterinarian.telephone %></dd>
 </dl>
 
 <div class="form-actions">

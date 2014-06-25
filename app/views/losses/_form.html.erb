@@ -1,14 +1,20 @@
-<%= simple_form_for @loss, :html => { :class => 'form-horizontal' } do |f| %>
+<%= simple_form_for @loss do |f| %> <!--, :html => { :class => 'form-horizontal' }-->
+  <%#= f.input :loss_history_no %>
+  <!--<span id="pets"><%#= render :partial => 'shared/pets'%></span>-->
+  <% @owner = Owner.where(:user_id => current_user.id).first %>
+  <%= collection_select(:pet_id, nil, Pet.where(:owner_id => @owner.id), :id, :name, {:include_blank => "", :selected => (@pet_id || 0)}) %>
   <%= f.input :lost %>
-  <%= f.input :finder_name %>
-  <%= f.input :finder_contact_details %>
-  <%= f.input :date_lost %>
+  <%= f.input :date_lost, :include_blank => "" %>
   <%= f.input :place_lost %>
-  <%= f.input :date_found %>
+  <%= f.input :finder_name %>
+  <%= f.input :date_found, :include_blank => "" %>
   <%= f.input :place_found %>
+  <%= f.input :finder_contact_details %>
+  <%= f.hidden_field :created_at %>
+  <%#= f.input :loss_id %>
   <div class="form-actions">
     <%= f.button :submit, :class => 'btn-primary' %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                losses_path, :class => 'btn' %>
+                pets_losses_path, :class => 'btn' %>
   </div>
 <% end %>

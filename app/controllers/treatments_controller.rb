@@ -26,6 +26,7 @@ class TreatmentsController < ApplicationController
   # POST /treatments.json
   def create
     @treatment = Treatment.new(treatment_params)
+    @treatment.pets = Pet.where(:id => params[:pet_id])
 
     respond_to do |format|
       if @treatment.save

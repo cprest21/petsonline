@@ -13,6 +13,15 @@ class BreedsController < ApplicationController
     end
   end
 
+  def update_breeds
+    unless params[:type_id] == ""
+      @breeds = Breed.where(:type_id => params[:type_id])
+    else
+      @breeds = []
+    end
+    render :partial => 'shared/breeds'
+  end
+
   # GET /breeds/1
   # GET /breeds/1.json
   def show
@@ -76,6 +85,6 @@ class BreedsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def breed_params
-      params.require(:breed).permit(:name, :type_id)
+      params.require(:breed).permit(:id, :name, :type_id)
     end
 end

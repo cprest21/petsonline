@@ -1,15 +1,28 @@
-<%= simple_form_for @pet, :html => { :class => 'form-horizontal' } do |f| %>
+<%= simple_form_for @pet do |f| %> <!--, :html => { :class => 'form-horizontal' }-->
+<%= render :partial => "shared/errors", :locals => {:model => @pet } %>
+
   <%= f.input :name %>
+  <br><br>
   <%#= f.input :owner_id %>
-  <%= f.input :type_id %>
-  <%= f.input :breed_id %>
+  <span id="types"><%= render :partial => 'shared/types'%></span>
+  <%#= f.input :type_id %>
+  <br><br>
+  <span id="breeds"><%= render :partial => 'shared/breeds'%></span>
+  <%#= f.input :breed_id %>
+  <br><br>
   <%= f.input :birth_date %>
+  <br><br>
   <%= f.input :colour %>
-  <%= f.input :sex %>
+  <br><br>
+  <%= f.input :sex %><%= "(Check for male, leave unchecked for female)" %> 
+  <br><br>
   <%= f.input :sterilized %>
+  <br><br>
   <%= f.input :available_to_breed %>
+  <br><br>
   <%= f.input :deceased %>
-  <%= f.input :death_date %>
+  <br><br>
+  <%= f.input :death_date, :include_blank => "" %>
   <div class="form-actions">
     <%= f.button :submit, :class => 'btn-primary' %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),

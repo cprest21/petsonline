@@ -7,7 +7,7 @@
   <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
   <dd><%= @city.name %></dd>
   <dt><strong><%= model_class.human_attribute_name(:province_id) %>:</strong></dt>
-  <dd><%= @city.province_id %></dd>
+  <dd><%= @city.province.name unless @city.province.nil? %></dd>
 </dl>
 
 <div class="form-actions">

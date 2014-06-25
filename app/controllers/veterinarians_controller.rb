@@ -6,26 +6,32 @@ class VeterinariansController < ApplicationController
   # GET /veterinarians.json
   def index
     @veterinarians = Veterinarian.all
+    render :layout => 'pets'
   end
 
   # GET /veterinarians/1
   # GET /veterinarians/1.json
   def show
+    render :layout => 'pets'
   end
 
   # GET /veterinarians/new
   def new
     @veterinarian = Veterinarian.new
+    render :layout => 'pets'
   end
 
   # GET /veterinarians/1/edit
   def edit
+    render :layout => 'pets'
   end
 
   # POST /veterinarians
   # POST /veterinarians.json
   def create
     @veterinarian = Veterinarian.new(veterinarian_params)
+    @city = City.where(:id => params[:city_id])
+    @veterinarian.city_id = params[:city_id]
 
     respond_to do |format|
       if @veterinarian.save
@@ -70,6 +76,6 @@ class VeterinariansController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def veterinarian_params
-      params.require(:veterinarian).permit(:address_id, :name, :lastname)
+      params.require(:veterinarian).permit(:id, :address_id, :name, :lastname, :city_id, :street, :street_no, :building, :floor, :office_no, :telephone)
     end
 end

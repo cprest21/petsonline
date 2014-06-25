@@ -1,9 +1,15 @@
 <%= simple_form_for @sale, :html => { :class => 'form-horizontal' } do |f| %>
   <%#= f.input :pet_id %>
-  <%= collection_select(:sale, :pet_id, Pet.all, :id, :name) %>
+  <% @own = Owner.where(:id => current_user.id).first %>
+  <%= f.label :pet %>
+  <%= collection_select(:sale, :pet_id, Pet.where(:owner_id => @own.id), :id, :name) %>
+  <br><br>
   <%= f.input :price %>
+  <br><br>
   <%= f.input :sold %>
-  <%= f.input :date_sold %>
+  <br><br>
+  <%= f.input :date_sold, :include_blank => ""  %>
+  <br><br>
   <%= f.input :details %>
   <div class="form-actions">
     <%= f.button :submit, :class => 'btn-primary' %>

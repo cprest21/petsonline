@@ -6,29 +6,33 @@ class SalesController < ApplicationController
   # GET /sales.json
   def index
     @sales = Sale.all
+    render :layout => 'pets'
   end
 
   # GET /sales/1
   # GET /sales/1.json
   def show
+    render :layout => 'pets'
   end
 
   # GET /sales/new
   def new
     @sale = Sale.new
+    render :layout => 'pets'
   end
 
   # GET /sales/1/edit
   def edit
+    render :layout => 'pets'
   end
 
   # POST /sales
   # POST /sales.json
   def create
     @sale = Sale.new(sale_params)
-    @owner = Owner.where(:user_id => current_user.id)
-    @pet = Pet.where(:owner_id => @owner.id)
-    @sale.pet_id = @pet.id
+    @ow = Owner.where(:user_id => current_user.id).first
+    #@pet = Pet.where(:owner_id => @ow.id)
+    #@sale.pet_id = @pet.id
 
     respond_to do |format|
       if @sale.save

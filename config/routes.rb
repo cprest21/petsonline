@@ -41,6 +41,7 @@ Petsonline::Application.routes.draw do
 
   post 'update_provinces' => 'provinces#update_provinces'
   post 'update_cities' => 'cities#update_cities'
+  post 'update_breeds' => 'breeds#update_breeds'
 
   resources :users
 

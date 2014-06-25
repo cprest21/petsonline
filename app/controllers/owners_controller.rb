@@ -6,6 +6,7 @@ class OwnersController < ApplicationController
   # GET /owners.json
   def index
     @owners = Owner.all
+    render :layout => 'application'
   end
 
   # GET /owners/1

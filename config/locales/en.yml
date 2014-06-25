@@ -21,3 +21,30 @@
 
 en:
   hello: "Hello world"
+  treatments:
+    index:
+      title: 'Medical History'
+  sales:
+    index:
+      title: 'Sales/Adoptions'
+    new:
+      title: 'New Sale/Adoption'
+    edit:
+      title: 'Edit Sale/Adoption'
+    show:
+      title: 'Sale/Adoption'
+  owners:
+    new:
+      title: 'Owner Details'
+  advertisers:
+    new:
+      title: 'Advertiser Details'
+  losses:
+    index:
+      title: 'Missing Pets'
+    new:
+      title: 'Add Missing Pet'
+    edit:
+      title: 'Edit Missing Pet'
+    show:
+      title: 'Missing Pet'  

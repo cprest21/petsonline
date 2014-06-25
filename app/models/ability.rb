@@ -10,9 +10,9 @@ class Ability
        elsif user.owner?
          can [:create, :update, :destroy], [Advertisement], :user_id => user.id
          can :read, Advertisement
-         can :read, Advertiser.name
-         can :read, Advertiser.lastname
-         can :read, Advertiser.address.telephone  #change all these!
+         can :read, Advertiser #Advertiser.name
+         #can :read, Advertiser.lastname
+         #can :read, Advertiser.address.telephone  #change all these!
          can :read, Breed
          can :read, City
          can :read, Country
@@ -20,7 +20,8 @@ class Ability
          can [:create, :update, :destroy], [Loss], :user_id => user.id
          can :read, Loss
          can :read, Operation
-         can [:create, :read, :update], [Owner], :user_id => user.id
+         can [:create, :update], [Owner], :user_id => user.id
+         can :read, Owner
          can [:create, :update, :destroy], [Pet], :user_id => user.id
          can :read, Pet
          can :read, Province
@@ -29,7 +30,7 @@ class Ability
          can [:create, :update, :destroy], [Treatment], :user_id => user.id
          can :read, Treatment
          can :read, Type
-         can :read, User.email, :user_id => user.id
+         can :read, User, :user_id => user.id #User.email, 
          can :read, Vaccination_Type
          can [:create, :update, :destroy], [Veterinarian], :user_id => user.id
          can :read, Veterinarian
@@ -37,11 +38,11 @@ class Ability
          can [:create, :update, :destroy], [Advertisement], :user_id => user.id
          can :read, Advertisement
          can :read, Advertiser
-         can :update, Advertiser, :user_id => user.id
+         can [:create, :update], [Advertiser], :user_id => user.id
          can :read, City
          can :read, Country
          can :read, Province
-         can :read, User.email, :user_id => user.id
+         can :read, User, :user_id => user.id #User.email
        end
     #
     # The first argument to `can` is the action you are giving the user 
