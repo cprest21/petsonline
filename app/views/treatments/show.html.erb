@@ -4,10 +4,16 @@
 </div>
 
 <dl class="dl-horizontal">
+  <dt><strong><%= "Pet" %>:</strong></dt>
+  <dd><%= @treatment.pets.first.name %></dd>
   <dt><strong><%= model_class.human_attribute_name(:veterinarian_id) %>:</strong></dt>
-  <dd><%= @treatment.veterinarian_id %></dd>
+  <dd><%= @treatment.veterinarian.name_with_lastname %></dd>
   <dt><strong><%= model_class.human_attribute_name(:treatment_date) %>:</strong></dt>
   <dd><%= @treatment.treatment_date %></dd>
+  <dt><strong><%= "Treatment type" %>:</strong></dt>
+  <dd><%if @treatment.vaccination? %><%= "Vaccination" %><% elsif @treatment.deworming? %><%= "Deworming" %><% elsif @treatment.operation? %><%= "Operation" %><% end %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:details) %>:</strong></dt>
+  <dd><%= @treatment.details %></dd>
 </dl>
 
 <div class="form-actions">

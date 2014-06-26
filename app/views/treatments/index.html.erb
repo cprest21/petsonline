@@ -6,20 +6,35 @@
   <thead>
     <tr>
       <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= "Pet" %></th>
       <th><%= model_class.human_attribute_name(:veterinarian_id) %></th>
       <th><%= model_class.human_attribute_name(:treatment_date) %></th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%= model_class.human_attribute_name(:vaccination) %></th>
+      <th><%= model_class.human_attribute_name(:deworming) %></th>
+      <th><%= model_class.human_attribute_name(:operation) %></th>
+      <th><%= model_class.human_attribute_name(:details) %></th>
+      <!--<th><%#= model_class.human_attribute_name(:created_at) %></th>-->
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
   <tbody>
     <% @treatments.each do |treatment| %>
+    <% @owne = Owner.where(:user_id => current_user.id).first %>
+          <%# @o.id = treatment.pets.first.owner_id %>
+          <% if @owne.id == treatment.pets.first.owner_id %>
       <tr>
         <td><%= link_to treatment.id, treatment_path(treatment) %></td>
-        <td><%= treatment.veterinarian_id %></td>
+        <td><%= treatment.pets.first.name unless treatment.pets.first.nil? %></td>
+        <td><%= "#{treatment.veterinarian.name} #{treatment.veterinarian.lastname}" unless treatment.veterinarian.nil? %></td>
         <td><%= treatment.treatment_date %></td>
-        <td><%=l treatment.created_at %></td>
+        <td><% if treatment.vaccination? %><%= "Yes" %><% else %><%= "No" %><% end %></td>
+        <td><% if treatment.deworming? %><%= "Yes" %><% else %><%= "No" %><% end %></td>
+        <td><% if treatment.operation? %><%= "Yes" %><% else %><%= "No" %><% end %></td>
+        <td><%= treatment.details %></td>
+        <!--<td><%#=l treatment.created_at %></td>-->
         <td>
+          <%= link_to t('.show', :default => t("helpers.links.show")),
+                      treatment_path(treatment), :class => 'btn btn-mini' %>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_treatment_path(treatment), :class => 'btn btn-mini' %>
           <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
@@ -29,6 +44,7 @@
                       :class => 'btn btn-mini btn-danger' %>
         </td>
       </tr>
+          <% end %> 
     <% end %>
   </tbody>
 </table>

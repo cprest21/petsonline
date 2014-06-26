@@ -13,6 +13,20 @@
 			<td align="right"><%= link_to "Logout", destroy_user_session_path, method: :delete %>&nbsp;&nbsp;&nbsp;</td>
 		</tr>
 	</table>
+	<table>
+		<tr>
+			<td width="50"></td>
+			<td>
+	<% if Advertiser.where(:user_id => current_user.id) %>
+	<%    if @advertiser.avatar_file_name.nil? %>
+	<%= %>
+	<%    else %>
+	<%= 	 image_tag @advertiser.avatar.url(:medium) %>
+	<%    end %>
+	<% end %>
+			</td>
+		</tr>
+	</table>
 <!--<div align="right"><%#= link_to "Logout", destroy_user_session_path, method: :delete %></div>-->
 <div class="container">
 	<div class="row">
@@ -28,6 +42,8 @@
   	<%=       link_to 'Add Address', new_address_path %>
   	<%    else %>
   	<%=       link_to 'Update Address', edit_address_path(@advertiser.address_id) %>
+  	<br>
+  	<%=       link_to 'Show Address', address_path(@advertiser.address_id) %>
   	<%    end %>
   	<% end %>
   	<%#= link_to 'Add Address', new_address_path unless Advertiser.where(:user_id => current_user.id).blank? %>

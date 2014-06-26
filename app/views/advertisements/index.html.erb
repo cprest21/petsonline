@@ -17,19 +17,30 @@
     <% @advertisements.each do |advertisement| %>
       <tr>
         <td><%= link_to advertisement.id, advertisement_path(advertisement) %></td>
-        <% u = User.where(:id => advertisement.user_id).first %>
-        <td><% if u.role == "owner" %>
-              <% @o = Owner.where(:user_id => u.id) %>
-              <%= @o.name %>&nbsp;<%= @o.lastname %> 
-            <% elsif u.role == "advertiser" %>
-              <% @a = Advertiser.where(:user_id => u.id).first %>
-              <%= @a.name %>&nbsp;<%= @a.lastname %>
+        <td><%# @u = User.where(:id => advertisement.user_id).first %>
+            <%# if @u.role == "owner" %>
+              <%# @o = Owner.where(:user_id => @u.id) %>
+              <%#= @o.name %><!--&nbsp;--><%#= @o.lastname %> 
+            <%# elsif @u.role == "advertiser" %>
+              <%# @a = Advertiser.where(:user_id => @u.id).first %>
+              <%#= @a.name %><!--&nbsp;--><%#= @a.lastname %>
+            <%# end %>
+
+            <% if Owner.where(:user_id => advertisement.user_id).first %>
+              <% @ow = Owner.where(:user_id => advertisement.user_id).first %>
+              <%= @ow.name_with_lastname %>
+            <% elsif Advertiser.where(:user_id => advertisement.user_id).first %>
+              <% @ad = Advertiser.where(:user_id => advertisement.user_id).first %>
+              <%= @ad.name_with_lastname %>
             <% end %>
+
         </td> <!--advertisement.user_id-->
         <td><%= advertisement.details %></td>
-        <td><%= advertisement.placement_date %></td>
+        <td><%= advertisement.updated_at %></td>
         <td><%#=l advertisement.created_at %></td>
         <td>
+          <%= link_to t('.show', :default => t("helpers.links.show")),
+                      advertisement_path(advertisement), :class => 'btn btn-mini' %>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_advertisement_path(advertisement), :class => 'btn btn-mini' %>
           <%= link_to t('.destroy', :default => t("helpers.links.destroy")),

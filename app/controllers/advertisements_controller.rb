@@ -11,10 +11,10 @@ class AdvertisementsController < ApplicationController
     @owner = Owner.new if @owner.nil?
     if current_user.role == "owner"
       @advertisements = Advertisement.all
-      render :layout => 'owners'
+      render :layout => 'advertisements'
     elsif current_user.role == "advertiser"
       @advertisements = Advertisement.all
-      render :layout => 'advertisers'
+      render :layout => 'advertisements'
     end
   end
 
@@ -29,10 +29,10 @@ class AdvertisementsController < ApplicationController
     #@user = User.where(:id => current_user.id).first
     if current_user.role == "owner"
       #@owner = Owner.where(:user_id => params[:user_id] )
-      render :layout => 'owners'
+      render :layout => 'advertisements'
     elsif current_user.role == "advertiser"
       #@advertiser = Advertiser.where(:user_id => advertisement.user_id).first
-      render :layout => 'advertisers'
+      render :layout => 'advertisements'
     end
     #@advertiser = Advertiser.where(:user_id => current_user.id).first
   end
@@ -42,10 +42,10 @@ class AdvertisementsController < ApplicationController
     @advertisement = Advertisement.new
     if current_user.role == "owner"
       @owner = Owner.where(:user_id => current_user.id).first 
-      render :layout => 'owners'
+      render :layout => 'advertisements'
     elsif current_user.role == "advertiser"
       @advertiser = Advertiser.where(:user_id => current_user.id).first
-      render :layout => 'advertisers'
+      render :layout => 'advertisements'
     end
   end
 

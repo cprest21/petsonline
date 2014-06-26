@@ -36,16 +36,20 @@ class PetsController < ApplicationController
     @pet = Pet.new(pet_params)
     @owner = Owner.where(:user_id => current_user.id).first
     @pet.owner_id = @owner.id
+    #@pet.type_id = @type.id
+    #@pet.breed_id = @breed.id
+    #@type_id = @pet.type.id
+    #@breed_id = @pet.breed.id
     #@breed = Breed.where(:id => params[:breed_id])
     #@pet.type_id = params[:type_id]
     #@pet.breed_id = params[:breed_id]
 
 
     #Try commenting the 4 lines below - corrected models breed and pet
-    #@breed = Breed.where(:id => params[:breed_id]).first
-    #@pet.breed_id = @breed.id
-    #@type = Type.where(:id => @breed.type_id).first
-    #@pet.type_id = @type.id
+    @breed = Breed.where(:id => params[:breed_id]).first
+    @pet.breed_id = @breed.id
+    @type = Type.where(:id => @breed.type_id).first
+    @pet.type_id = @type.id
 
     #@type = Type.where(:id => params[:type_id])
    

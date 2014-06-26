@@ -4,18 +4,20 @@
 </div>
 
 <dl class="dl-horizontal">
+  <dt><strong><%= "Owner" %></strong></dt>
+  <dd><%= @loss.pets.first.owner.name_with_lastname %>
   <dt><strong><%= "Pet" %></strong></dt>
-  <dd><%= @loss.pets.first.name %></dd>
+  <dd><%= @loss.pets.first.name %>,&nbsp;Type:&nbsp;<%= @loss.pets.first.type.name %>,&nbsp;Breed:&nbsp;<%= @loss.pets.first.breed.name %></dd>
   <dt><strong><%= model_class.human_attribute_name(:lost) %>:</strong></dt>
-  <dd><%= @loss.lost %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:finder_name) %>:</strong></dt>
-  <dd><%= @loss.finder_name %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:finder_contact_details) %>:</strong></dt>
-  <dd><%= @loss.finder_contact_details %></dd>
+  <dd><% if @loss.lost? %><%= "Yes" %><% else %><%= "No" %><% end %></dd>
   <dt><strong><%= model_class.human_attribute_name(:date_lost) %>:</strong></dt>
   <dd><%= @loss.date_lost %></dd>
   <dt><strong><%= model_class.human_attribute_name(:place_lost) %>:</strong></dt>
   <dd><%= @loss.place_lost %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:finder_name) %>:</strong></dt>
+  <dd><%= @loss.finder_name %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:finder_contact_details) %>:</strong></dt>
+  <dd><%= @loss.finder_contact_details %></dd>
   <dt><strong><%= model_class.human_attribute_name(:date_found) %>:</strong></dt>
   <dd><%= @loss.date_found %></dd>
   <dt><strong><%= model_class.human_attribute_name(:place_found) %>:</strong></dt>

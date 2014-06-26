@@ -23,8 +23,10 @@
 </dl>
 
 <div class="form-actions">
+  <%# if can? :index, @address %>
   <%= link_to t('.back', :default => t("helpers.links.back")),
               addresses_path, :class => 'btn'  %>
+  <%# end %>
   <%= link_to t('.edit', :default => t("helpers.links.edit")),
               edit_address_path(@address), :class => 'btn' %>
   <%= link_to t('.destroy', :default => t("helpers.links.destroy")),

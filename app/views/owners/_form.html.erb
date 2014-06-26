@@ -5,12 +5,14 @@
   <%#= f.hidden_field :user_id, :value => current_user.id %>
   <%= f.input :name %>
   <%= f.input :lastname %>
+  <%= f.label "Upload profile photo:" %>
+  <%= f.file_field :avatar %>
   <div class="form-actions">
     <%= f.button :submit, :class => 'btn-primary' %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
                 owners_path, :class => 'btn' %>
   </div>
-  <br><br>
+  <!--<br><br>-->
 
 
 <% end %>

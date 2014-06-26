@@ -38,6 +38,7 @@ gem 'simple_form'
 gem 'cancan'
 gem "less-rails"
 gem "twitter-bootstrap-rails"
+gem "paperclip", "~> 4.1"
 #gem "less-rails"
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

@@ -6,20 +6,28 @@ class TreatmentsController < ApplicationController
   # GET /treatments.json
   def index
     @treatments = Treatment.all
+    render :layout => 'pets'
   end
 
   # GET /treatments/1
   # GET /treatments/1.json
   def show
+    render :layout => 'pets'
   end
 
   # GET /treatments/new
   def new
     @treatment = Treatment.new
+    render :layout => 'pets'
+    #@treatment.veterinarian = Veterinarian.where(:id => params[:veterinarian_id]).first
   end
 
   # GET /treatments/1/edit
   def edit
+    @pet_id = @treatment.pets.first.id
+    @veterinarian_id = @treatment.veterinarian.id
+    render :layout => 'pets'
+    #@veterinarian_id = @treatment.veterinarian.id
   end
 
   # POST /treatments
@@ -27,6 +35,9 @@ class TreatmentsController < ApplicationController
   def create
     @treatment = Treatment.new(treatment_params)
     @treatment.pets = Pet.where(:id => params[:pet_id])
+    #@veterinarian = Veterinarian.where(:id => :veterinarian_id)
+    #@treatment.veterinarian_id = @veterinarian.id
+    #@treatment.veterinarian = Veterinarian.where(:id => params[:veterinarian_id]).first
 
     respond_to do |format|
       if @treatment.save
@@ -71,6 +82,6 @@ class TreatmentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def treatment_params
-      params.require(:treatment).permit(:veterinarian_id, :treatment_date)
+      params.require(:treatment).permit(:id, :veterinarian_id, :treatment_date, :vaccination, :deworming, :operation, :details)
     end
 end

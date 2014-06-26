@@ -1,6 +1,6 @@
 <%= simple_form_for @sale, :html => { :class => 'form-horizontal' } do |f| %>
   <%#= f.input :pet_id %>
-  <% @own = Owner.where(:id => current_user.id).first %>
+  <% @own = Owner.where(:user_id => current_user.id).first %>
   <%= f.label :pet %>
   <%= collection_select(:sale, :pet_id, Pet.where(:owner_id => @own.id), :id, :name) %>
   <br><br>

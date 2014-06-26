@@ -5,7 +5,14 @@
 
 <dl class="dl-horizontal">
   <dt><strong><%= model_class.human_attribute_name(:user_id) %>:</strong></dt>
-  <dd><%= @advertisement.user_id %>
+  <dd><%#= @advertisement.user_id %>
+    <% if Owner.where(:user_id => @advertisement.user_id).first %>
+      <% @ow = Owner.where(:user_id => @advertisement.user_id).first %>
+      <%= @ow.name_with_lastname %>
+    <% elsif Advertiser.where(:user_id => @advertisement.user_id).first %>
+      <% @ad = Advertiser.where(:user_id => @advertisement.user_id).first %>
+      <%= @ad.name_with_lastname %>
+    <% end %>
     <%# u = User.where(:id => @advertisement.user_id).first %>
     <%# if u.role == "owner" %>
         <%# @o = Owner.where(:user_id => u.id) %>

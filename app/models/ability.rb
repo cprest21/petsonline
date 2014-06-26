@@ -5,21 +5,23 @@ class Ability
     # Define abilities for the passed in user here. For example:
     #
        user ||= User.new # guest user (not logged in)
-       if user.admin?
+       #@owner = Owner.where(:user_id => current_user.id)
+       if user.role == "admin" #user.admin?
          can :manage, :all
-       elsif user.owner?
+       elsif user.role == "owner" #user.owner?
          can [:create, :update, :destroy], [Advertisement], :user_id => user.id
          can :read, Advertisement
          can :read, Advertiser #Advertiser.name
+         can :read, Address, :user_id => user.id #:id => @owner.address_id
          #can :read, Advertiser.lastname
          #can :read, Advertiser.address.telephone  #change all these!
          can :read, Breed
          can :read, City
          can :read, Country
-         can :read, Deworming
+         #can :read, Deworming
          can [:create, :update, :destroy], [Loss], :user_id => user.id
          can :read, Loss
-         can :read, Operation
+         #can :read, Operation
          can [:create, :update], [Owner], :user_id => user.id
          can :read, Owner
          can [:create, :update, :destroy], [Pet], :user_id => user.id
@@ -31,10 +33,10 @@ class Ability
          can :read, Treatment
          can :read, Type
          can :read, User, :user_id => user.id #User.email, 
-         can :read, Vaccination_Type
+         #can :read, Vaccination_Type
          can [:create, :update, :destroy], [Veterinarian], :user_id => user.id
          can :read, Veterinarian
-       elsif user.advertiser?
+       elsif user.role == "advertiser" #user.advertiser?
          can [:create, :update, :destroy], [Advertisement], :user_id => user.id
          can :read, Advertisement
          can :read, Advertiser

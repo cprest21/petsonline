@@ -11,6 +11,13 @@ class AddressesController < ApplicationController
   # GET /addresses/1
   # GET /addresses/1.json
   def show
+    if current_user.role == "owner"
+      @owner = Owner.where(:user_id => current_user.id).first 
+      render :layout => 'advertisements'
+    elsif current_user.role == "advertisements"
+      @advertiser = Advertiser.where(:user_id => current_user.id).first
+      render :layout => 'advertisers'
+    end
   end
 
   # GET /addresses/new
@@ -20,8 +27,8 @@ class AddressesController < ApplicationController
     #put if statement here regarding owners/advertisers
     if current_user.role == "owner"
       @owner = Owner.where(:user_id => current_user.id).first 
-      render :layout => 'owners'
-    elsif current_user.role == "advertiser"
+      render :layout => 'advertisements'
+    elsif current_user.role == "advertisements"
       @advertiser = Advertiser.where(:user_id => current_user.id).first
       render :layout => 'advertisers'
     end

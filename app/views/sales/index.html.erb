@@ -6,6 +6,7 @@
   <thead>
     <tr>
       <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= "Owner" %></th>
       <th><%= model_class.human_attribute_name(:pet_id) %></th>
       <th><%= model_class.human_attribute_name(:price) %></th>
       <th><%= model_class.human_attribute_name(:sold) %></th>
@@ -19,8 +20,9 @@
     <% @sales.each do |sale| %>
       <tr>
         <td><%= link_to sale.id, sale_path(sale) %></td>
+        <td><%= sale.pet.owner.name_with_lastname %></td>
         <td><%= sale.pet.name %>,&nbsp;Type:&nbsp;<%= sale.pet.type.name %>,&nbsp;Breed:&nbsp;<%= sale.pet.breed.name %></td>
-        <td><% if sale.price == 0.0 %><%= "For Adoption" %><% else %><%= sale.price %><% end %></td>
+        <td><% if sale.price == 0.0 || sale.price.nil? %><%= "For Adoption" %><% else %><%= sale.price %><% end %></td>
         <td><% if sale.sold? %><%= "Yes" %><% else %><%= "No" %><% end %></td>
         <td><%= sale.date_sold %></td>
         <td><%= sale.details %></td>

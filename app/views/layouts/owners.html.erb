@@ -13,6 +13,20 @@
 			<td align="right"><%= link_to "Logout", destroy_user_session_path, method: :delete %>&nbsp;&nbsp;&nbsp;</td>
 		</tr>
 	</table>
+	<table>
+		<tr>
+			<td width="50"></td>
+			<td>
+	<% if Owner.where(:user_id => current_user.id) %>
+	<%    if @owner.avatar_file_name.nil? %>
+	<%= %>
+	<%    else %>
+	<%=      image_tag @owner.avatar.url(:medium) %>
+	<%    end %>
+	<% end %>
+			</td>
+		</tr>
+	</table>
 <div class="container">
 	<div class="row">
 		<div class="span12">
@@ -25,13 +39,14 @@
   	<%=       link_to 'Add Address', new_address_path %>
   	<%    else %>
   	<%=       link_to 'Update Address', edit_address_path(@owner.address_id) %>
+  	<br>
+  	<%=       link_to 'Show Address', address_path(@owner.address_id) %>
   	<%    end %>
   	<% end %>
   	<%#= link_to 'Add Address', new_address_path unless Owner.where(:user_id => current_user.id).blank? %>
   	<br>
   	<%= link_to 'Update Owner Details', new_owner_path %>
-
-  </div>
+  		</div>
 	</div>
 </div>
 <%# if :action != 'home#index' %>
