@@ -39,6 +39,11 @@ gem 'cancan'
 gem "less-rails"
 gem "twitter-bootstrap-rails"
 gem "paperclip", "~> 4.1"
+
+group :production do
+	gem 'pg'
+	gem 'rails_12factor' #sudo apt-get install libpq-dev before bundle install
+end
 #gem "less-rails"
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
